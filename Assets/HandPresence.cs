@@ -60,7 +60,7 @@ public class HandPresence : MonoBehaviour
         {
             handAnimator.SetFloat("Trigger", 0f);
         }
-        
+
         if (targetDevice.TryGetFeatureValue(CommonUsages.grip, out float gripValue))
         {
             handAnimator.SetFloat("Grip", gripValue);
