@@ -30,8 +30,8 @@ public class elevControl : MonoBehaviour {
 	private Transform elevator;
 
 	/// <summary>
-	/// returns the floor level to move the elevator to. 
-	/// A Value of 13 will return the current floor. 
+	/// returns the floor level to move the elevator to.
+	/// A Value of 13 will return the current floor.
 	/// Anything greater than 13 will return one floor lower. (14 is actually 13)
 	/// </summary>
 	/// <returns>The floor for the elevator to go to.</returns>
@@ -50,7 +50,7 @@ public class elevControl : MonoBehaviour {
 
 		//BUTTON LIGHTS OBJECT LIST, POPULATE LIGHTS OBJECT LIST, SORT LIGHTS OBJECT LIST
 		buttonLightList = new List<Transform>();
-		foreach ( Transform btnLight in btnLightGroup ){ 
+		foreach ( Transform btnLight in btnLightGroup ){
 			buttonLightList.Add( btnLight );
 		}
 		buttonLightList = buttonLightList.OrderBy( Transform=>Transform.name ).ToList();
@@ -58,21 +58,21 @@ public class elevControl : MonoBehaviour {
 
 		//HALL FRAMES OBJECT LIST, POPULATE FRAMES OBJECT LIST, SORT FRAMES OBJECT LIST
 		hallFramesList	= new List<GameObject>();
-		foreach ( GameObject hallFrame in GameObject.FindGameObjectsWithTag( hallFrameTag ) ){ 
+		foreach ( GameObject hallFrame in GameObject.FindGameObjectsWithTag( hallFrameTag ) ){
 			hallFramesList.Add( hallFrame );
 		}
 		hallFramesList = hallFramesList.OrderBy( GameObject=>GameObject.GetComponent<elevHallFrameController>().floor ).ToList();
 
 //		//LED PANEL TEXTURES LIST, POPULATE TEXTURES LIST, SORT THE LIST
 //		texturesList = new List<Texture>();
-//		foreach ( Texture tex in Resources.LoadAll( "LEDPanelTextures" ) ){ 
+//		foreach ( Texture tex in Resources.LoadAll( "LEDPanelTextures" ) ){
 //			texturesList.Add( tex );
 //		}
 //		texturesList = texturesList.OrderBy( Texture=>Texture.name ).ToList();
 
 		//LED PANEL TEXTURES LIST, POPULATE TEXTURES LIST, SORT THE LIST
 		texturesList = new List<Texture>();
-		foreach ( Texture tex in Resources.LoadAll( "LEDPanelTexturesV2" ) ){ 
+		foreach ( Texture tex in Resources.LoadAll( "LEDPanelTexturesV2" ) ){
 			texturesList.Add( tex );
 		}
 		texturesList = texturesList.OrderBy( Texture=>Texture.name ).ToList();
@@ -80,7 +80,7 @@ public class elevControl : MonoBehaviour {
 
 		//SET ANIMATION CLIPS
 		openAnim = transform.GetComponent<Animation>().GetClip( "OpenDoorsV2" );
-		closeAnim = transform.GetComponent<Animation>().GetClip( "CloseDoorsV2" );	
+		closeAnim = transform.GetComponent<Animation>().GetClip( "CloseDoorsV2" );
 
 		//ASSIGN LED MATERIALS TO ELEVATOR AND HALL FRAMES, THEN SET LED FLOOR DISPLAY & ELEVATOR TO CURRENT FLOOR
 		ledMatsArray = new Material[2];
@@ -171,7 +171,7 @@ public class elevControl : MonoBehaviour {
 			if( !doorOpen )
 				OpenDoor( curFloorLevel );
 			break;
-			
+
 		default:
 			if (buttonNum > hallFramesList.Count)
 				break;
@@ -243,7 +243,7 @@ public class elevControl : MonoBehaviour {
 		//SAFETY CHECK!
 		if( newFloorNum > hallFramesList.Count || newFloorNum < 0 )
 			return;
-		
+
 		StartCoroutine( LEDPanelSwitch(  newFloorNum, floorTime ) );
 	}
 
@@ -261,7 +261,7 @@ public class elevControl : MonoBehaviour {
 		int illume = newFloorNum ;
 //		int illume = ( newFloorNum * 2 ) +1;
 //		int diff = illume - 1;
-		
+
 		//CHANGE LED MATERIAL TEXTURES
 //		ledMat.SetTexture( "_MainTex", texturesList[diff] );
 		ledMat.SetTexture( "_EmissionMap", texturesList[illume] );
@@ -273,7 +273,7 @@ public class elevControl : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Switch LED display from current floor to new floor incrementally 
+	/// Switch LED display from current floor to new floor incrementally
 	/// </summary>
 	/// <param name="newfloorNum">New Floor number.</param>
 	/// <param name="floorTime">Time between Floors.</param>
@@ -308,7 +308,7 @@ public class elevControl : MonoBehaviour {
 	/// <summary>
 	/// Opens the elevator door only.
 	/// </summary>
-	void OpenDoor(){
+	public void OpenDoor(){
 		transform.GetComponent<Animation>().clip = openAnim;
 		transform.GetComponent<Animation>().Play();
 		doorOpen = true;
@@ -393,7 +393,7 @@ public class elevControl : MonoBehaviour {
 			if( waitForFixedUpdate )
 				yield return new WaitForFixedUpdate();
 			else
-				yield return null; 
+				yield return null;
 		}
 
 		//OPEN THE DOORS
@@ -411,7 +411,7 @@ public class elevControl : MonoBehaviour {
 
 		newFloor = curFloorLevel;
 	}
-	
+
 	void Update () {
 		//USE THE HALL FRAME CALL BUTTON > TRIGGERED FROM callBtnTrigger.cs
 		if( useCallBtn ){
@@ -435,7 +435,7 @@ public class elevControl : MonoBehaviour {
 			//SELECT THE HIGHLIGHTED BUTTON
 			if(Input.GetKeyDown(KeyCode.E)){
 				PressButton( newFloor );
-			}	
+			}
 		}
 	}
 }
