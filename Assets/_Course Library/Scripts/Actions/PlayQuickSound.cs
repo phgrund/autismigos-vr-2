@@ -6,9 +6,6 @@
 [RequireComponent(typeof(AudioSource))]
 public class PlayQuickSound : MonoBehaviour
 {
-    [Tooltip("The sound that is played")]
-    public AudioClip sound = null;
-
     [Tooltip("The volume of the sound")]
     public float volume = 1.0f;
 
@@ -24,8 +21,10 @@ public class PlayQuickSound : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void Play()
+    public void Play(AudioClip sound)
     {
+        if (!sound) return;
+
         float randomVariance = Random.Range(-randomPitchVariance, randomPitchVariance);
         randomVariance += defaultPitch;
 

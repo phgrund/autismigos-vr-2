@@ -2093,7 +2093,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755a2ba17a31d643b4a27e3034d8a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 80c91ff23ebdc1c4b9d36dc54046b4c8, type: 3}
   volume: 1
   randomPitchVariance: 0
 --- !u!82 &184766291
@@ -2207,25 +2206,25 @@ MonoBehaviour:
   OnIntercomPress:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1025584852}
-        m_TargetAssemblyTypeName: Welcome, Assembly-CSharp
-        m_MethodName: unlockEntranceDoorWithDelay
-        m_Mode: 1
+      - m_Target: {fileID: 724480728}
+        m_TargetAssemblyTypeName: Door, Assembly-CSharp
+        m_MethodName: UnlockDoorWithDelay
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 3
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 184766290}
         m_TargetAssemblyTypeName: PlayQuickSound, Assembly-CSharp
         m_MethodName: Play
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: 80c91ff23ebdc1c4b9d36dc54046b4c8, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4323,6 +4322,36 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6690130310634248214, guid: 6f53776f4f83b3d429a541c98d5ed0fd, type: 3}
   m_PrefabInstance: {fileID: 237520545}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &724480728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724480727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404477160201e8b4baa3f713ced6fcb7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnDoorLock:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDoorUnlock:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 724480731}
+        m_TargetAssemblyTypeName: PlayQuickSound, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 9657fef5c1f7e85428c514aa3924a51a, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &724480731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4335,7 +4364,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755a2ba17a31d643b4a27e3034d8a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 9657fef5c1f7e85428c514aa3924a51a, type: 3}
   volume: 1
   randomPitchVariance: 0
 --- !u!82 &724480732
@@ -5841,26 +5869,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4e9bb2c6f06ce48aa79a622857eb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entranceDoor: {fileID: 724480727}
-  entranceDoorSecondsDelay: 3
-  OnEntranceDoorLock:
-    m_PersistentCalls:
-      m_Calls: []
-  OnEntranceDoorUnlock:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 724480731}
-        m_TargetAssemblyTypeName: PlayQuickSound, Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  entranceDoor: {fileID: 724480728}
 --- !u!1 &1050297787
 GameObject:
   m_ObjectHideFlags: 0
@@ -8272,7 +8281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0755a2ba17a31d643b4a27e3034d8a79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sound: {fileID: 8300000, guid: 8436c8cf5779f4fbda9ea5a4acee8d73, type: 3}
   volume: 1
   randomPitchVariance: 0
 --- !u!82 &1645811081
@@ -8413,10 +8421,10 @@ MonoBehaviour:
       - m_Target: {fileID: 1645811080}
         m_TargetAssemblyTypeName: PlayQuickSound, Assembly-CSharp
         m_MethodName: Play
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 8300000, guid: 0d9ba9deac23f4ff199b989fe352e768, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
