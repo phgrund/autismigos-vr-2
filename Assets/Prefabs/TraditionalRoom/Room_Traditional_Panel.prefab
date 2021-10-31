@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 4128786459453527205}
   - component: {fileID: 5218809740431949837}
   - component: {fileID: 3881701243105220551}
-  m_Layer: 0
+  - component: {fileID: 9055421504655483542}
+  m_Layer: 13
   m_Name: Room_Traditional_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,3 +124,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9956539, y: 0.1741085, z: 0.031540897}
   m_Center: {x: -2.0696985e-18, y: 0.08938956, z: 0.015770638}
+--- !u!114 &9055421504655483542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8177679189117855997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d07ce676d7afda4dabb3b0f7dd5e654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 1
+  m_IgnoreFromBuild: 0
+  m_AffectedAgents: ffffffff

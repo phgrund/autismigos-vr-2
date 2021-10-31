@@ -6,7 +6,9 @@ using UnityEngine.Events;
 public class Elevator : MonoBehaviour
 {
     public UnityEvent OnDoorOpen;
+    public UnityEvent OnDoorOpenFinish;
     public UnityEvent OnDoorClose;
+    public UnityEvent OnDoorCloseFinish;
 
     private AnimationClip openAnim, closeAnim;
     private bool doorOpen = false;
@@ -25,8 +27,15 @@ public class Elevator : MonoBehaviour
         if (doorOpen) return;
         animationTransform.clip = openAnim;
         animationTransform.Play();
-        doorOpen = true;
         OnDoorOpen.Invoke();
+        StartCoroutine(OpenDoorFinish());
+    }
+
+    private IEnumerator OpenDoorFinish()
+    {
+        yield return new WaitForSeconds(3f);
+        doorOpen = true;
+        OnDoorOpenFinish.Invoke();
     }
 
     public void CloseDoor()
@@ -34,7 +43,13 @@ public class Elevator : MonoBehaviour
         if (!doorOpen) return;
         animationTransform.clip = closeAnim;
         animationTransform.Play();
-        doorOpen = false;
         OnDoorClose.Invoke();
+        StartCoroutine(CloseDoorFinish());
+    }
+    private IEnumerator CloseDoorFinish()
+    {
+        yield return new WaitForSeconds(3f);
+        doorOpen = false;
+        OnDoorCloseFinish.Invoke();
     }
 }

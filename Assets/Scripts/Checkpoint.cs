@@ -7,6 +7,7 @@ public class Checkpoint : MonoBehaviour
 {
     public UnityEvent OnCheckpointReached;
     public bool firstReachOnly = true;
+    public string targetTag;
     private bool hasReached = false;
 
     // Start is called before the first frame update
@@ -24,9 +25,9 @@ public class Checkpoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (firstReachOnly && hasReached) return;
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag(targetTag))
         {
-            Debug.Log("reached");
+            Debug.Log("Checkpoint reached");
             hasReached = true;
             OnCheckpointReached.Invoke();
         }
