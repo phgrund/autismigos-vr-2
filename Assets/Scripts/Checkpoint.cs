@@ -5,6 +5,9 @@ using UnityEngine.Events;
 
 public class Checkpoint : MonoBehaviour
 {
+    public enum EventEmitType { CheckpointReached, ManualEmit }
+    public EventEmitType eventEmitType = EventEmitType.CheckpointReached;
+
     public UnityEvent OnCheckpointReached;
     public bool firstReachOnly = true;
     public string targetTag;
@@ -27,7 +30,7 @@ public class Checkpoint : MonoBehaviour
         if (firstReachOnly && hasReached) return;
         if (other.gameObject.CompareTag(targetTag))
         {
-            Debug.Log("Checkpoint reached");
+            Debug.Log($"Checkpoint reached - {targetTag}");
             hasReached = true;
             OnCheckpointReached.Invoke();
         }

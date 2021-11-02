@@ -1,37 +1,60 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Events;
 
 public class AutisticChild : MonoBehaviour
 {
     public UnityEvent OnCheckpointReached;
-    public Checkpoint checkpoint { get; set; } = null;
-    public float speed = 1f;
+    public float turnSpeed = 1f;
+    private NavMeshAgent agent;
+    private bool isNavigating = false;
+    private Checkpoint currentCheckpoint;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (checkpoint) FollowCheckpoint();
+        Debug.Log(isNavigating);
+        if (isNavigating)
+        {
+            isNavigating = agent.remainingDistance >= agent.stoppingDistance;
+            if (!isNavigating)
+            {
+                // currentCheckpoint.
+                currentCheckpoint = null;
+            }
+        }
     }
 
-    public void FollowCheckpoint()
+    public void FollowCheckpoint(Checkpoint checkpoint)
     {
-        Vector3 dir = checkpoint.transform.position - transform.position;
-        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
-
-        if (Vector3.Distance(transform.position, checkpoint.transform.position) <= .2f) ClearCheckpoint();
+        isNavigating = true;
+        agent.SetDestination(checkpoint.transform.position);
+        currentCheckpoint = checkpoint;
     }
 
-    public void ClearCheckpoint ()
+    public void LookAt(GameObject other)
     {
-        checkpoint = null;
-        OnCheckpointReached.Invoke();
+        Quaternion _lookRotation = Quaternion.LookRotation((other.transform.position - transform.position).normalized);
+        Debug.Log(_lookRotation);
+        // transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+        transform.rotation = _lookRotation;
+    }
+
+    public void LookAtWithDelay(GameObject other)
+    {
+        StartCoroutine(LookAtCoroutine(other));
+    }
+
+    private IEnumerator LookAtCoroutine(GameObject other, float seconds = 3f)
+    {
+        yield return new WaitForSeconds(seconds);
+        LookAt(other);
     }
 }

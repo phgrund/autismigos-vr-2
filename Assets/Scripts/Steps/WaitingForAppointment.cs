@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class WaitingForAppointment : MonoBehaviour
 {
@@ -21,14 +21,8 @@ public class WaitingForAppointment : MonoBehaviour
 
     }
 
-    public void MoveAutisticToEntrance()
+    public void MoveAutisticToSeat()
     {
-        autistic.checkpoint = entranceDoorCheckpoint;
-    }
-
-    public async void MoveAutisticToSeat()
-    {
-        await Task.Delay(1);
-        autistic.checkpoint = seatCheckpoint;
+        autistic.FollowCheckpoint(seatCheckpoint);
     }
 }

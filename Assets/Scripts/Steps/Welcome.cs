@@ -17,7 +17,6 @@ public class Welcome : MonoBehaviour
 
     public void MoveAutisticToEntranceDoor ()
     {
-        Debug.Log("move autistic");
-        autistic.checkpoint = entranceDoorCheckpoint;
+        autistic.FollowCheckpoint(entranceDoorCheckpoint);
     }
 }
