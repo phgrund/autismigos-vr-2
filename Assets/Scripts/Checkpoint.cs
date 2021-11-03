@@ -27,6 +27,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (eventEmitType != EventEmitType.CheckpointReached) return;
         if (firstReachOnly && hasReached) return;
         if (other.gameObject.CompareTag(targetTag))
         {
