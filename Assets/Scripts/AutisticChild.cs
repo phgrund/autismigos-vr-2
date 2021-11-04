@@ -11,10 +11,11 @@ public class AutisticChild : MonoBehaviour
 
     private NavMeshAgent agent;
     private Animator animator;
+    private AudioSource audioSource;
+    private PlayContinuousSound playContinuousSound;
+
     private bool isNavigating = false;
     private Checkpoint currentCheckpoint;
-
-    int IsWalkingHash;
 
     public Transform leftHand;
     public Transform rightHand;
@@ -22,11 +23,20 @@ public class AutisticChild : MonoBehaviour
     private HandStatus leftHandStatus;
     private HandStatus rightHandStatus;
 
+    // Animation States
+    private bool isWalking = false;
+    private bool isRunning = false; // TODO
+    private bool isSitting = false;
+
+    public AudioClip cryingSound;
+    private bool isCrying = false;
+
     void Awake()
     {
-        IsWalkingHash = Animator.StringToHash("IsWalking");
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
+        playContinuousSound = GetComponent<PlayContinuousSound>();
     }
 
     void Start()
@@ -39,27 +49,58 @@ public class AutisticChild : MonoBehaviour
 
     void Update()
     {
-        // Debug.Log(isNavigating);
-        // Debug.Log($"{agent.remainingDistance} {agent.stoppingDistance}");
         if (isNavigating)
         {
-            isNavigating = agent.remainingDistance != agent.stoppingDistance;
+            isNavigating = agent.remainingDistance != agent.stoppingDistance && !agent.isStopped;
             if (!isNavigating)
             {
-                // currentCheckpoint.
+                currentCheckpoint.InvokeCheckpointReached();
                 currentCheckpoint = null;
+                isWalking = false;
+                isRunning = false;
             }
         }
 
-        animator.SetBool(IsWalkingHash, isNavigating);
+        animator.SetBool("IsWalking", isWalking);
+        animator.SetBool("IsSitting", isSitting);
+        // Debug.Log($"Is Sitting: {IsSitting}");
         // Debug.Log(isNavigating);
     }
 
     public void FollowCheckpoint(Checkpoint checkpoint)
     {
         isNavigating = true;
+        isWalking = true;
+        isSitting = false;
         agent.SetDestination(checkpoint.transform.position);
         currentCheckpoint = checkpoint;
+    }
+
+    public void SitDown()
+    {
+        if (currentCheckpoint) agent.isStopped = true;
+        isWalking = false;
+        isRunning = false;
+        isSitting = true;
+    }
+
+    public void GetUp()
+    {
+        if (!isSitting) return;
+        isSitting = false;
+    }
+
+    public void StartCrying()
+    {
+        if (isCrying) return;
+        playContinuousSound.Play(cryingSound);
+        isCrying = true;
+    }
+
+    public void StopCrying()
+    {
+        if (!isCrying) return;
+        isCrying = false;
     }
 
     public void AttachObjectToLeftHand(GameObject obj)
@@ -109,6 +150,7 @@ public class AutisticChild : MonoBehaviour
         handStatus.rigidbody = null;
     }
 
+    // TODO: Ver o porquê não está funcionando
     public void LookAt(GameObject other)
     {
         Quaternion _lookRotation = Quaternion.LookRotation((other.transform.position - transform.position).normalized);

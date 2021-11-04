@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Video;
 
 /// <summary>
-/// Play a single video or play from a list of videos 
+/// Play a single video or play from a list of videos
 /// </summary>
 [RequireComponent(typeof(VideoPlayer))]
 public class PlayVideo : MonoBehaviour
@@ -129,7 +129,7 @@ public class PlayVideo : MonoBehaviour
 
     private void OnValidate()
     {
-            
+
         if (TryGetComponent(out VideoPlayer videoPlayer))
             videoPlayer.targetMaterialProperty = "_BaseMap";
     }

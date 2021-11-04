@@ -25,15 +25,24 @@ public class Checkpoint : MonoBehaviour
 
     }
 
+    private void ReachCheckpoint()
+    {
+        Debug.Log($"Checkpoint reached - {targetTag}");
+        hasReached = true;
+        OnCheckpointReached.Invoke();
+    }
+
+    public void InvokeCheckpointReached()
+    {
+        if (eventEmitType != EventEmitType.ManualEmit) return;
+        if (firstReachOnly && hasReached) return;
+        ReachCheckpoint();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (eventEmitType != EventEmitType.CheckpointReached) return;
         if (firstReachOnly && hasReached) return;
-        if (other.gameObject.CompareTag(targetTag))
-        {
-            Debug.Log($"Checkpoint reached - {targetTag}");
-            hasReached = true;
-            OnCheckpointReached.Invoke();
-        }
+        if (other.gameObject.CompareTag(targetTag)) ReachCheckpoint();
     }
 }
