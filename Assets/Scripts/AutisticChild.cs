@@ -9,22 +9,18 @@ public class AutisticChild : MonoBehaviour
     public UnityEvent OnCheckpointReached;
     public float turnSpeed = 1f;
 
-    public Transform leftHand;
-    private Transform leftHandTransform;
-    private GameObject leftHandHold = null;
-    private Transform oldLeftHandParent;
-
-    public Transform rightHand;
-    private Transform rightHandTransform;
-    private GameObject rightHandHold = null;
-    private Transform oldRightHandParent;
-
     private NavMeshAgent agent;
     private Animator animator;
     private bool isNavigating = false;
     private Checkpoint currentCheckpoint;
 
     int IsWalkingHash;
+
+    public Transform leftHand;
+    public Transform rightHand;
+
+    private HandStatus leftHandStatus;
+    private HandStatus rightHandStatus;
 
     void Awake()
     {
@@ -35,8 +31,10 @@ public class AutisticChild : MonoBehaviour
 
     void Start()
     {
-        leftHandTransform = leftHand.Find("Attach") ?? leftHand.transform;
-        rightHandTransform = rightHand.Find("Attach") ?? rightHand.transform;
+        leftHandStatus = new HandStatus();
+        rightHandStatus = new HandStatus();
+        leftHandStatus.transform = leftHand.Find("Attach") ?? leftHand.transform;
+        rightHandStatus.transform = rightHand.Find("Attach") ?? rightHand.transform;
     }
 
     void Update()
@@ -66,51 +64,57 @@ public class AutisticChild : MonoBehaviour
 
     public void AttachObjectToLeftHand(GameObject obj)
     {
-        DropLeftHandItem();
-        oldLeftHandParent = obj.transform.parent;
-        AttachObjectToHand(leftHandTransform, obj);
-    }
-
-    private void DropLeftHandItem()
-    {
-        if (leftHandHold == null) return;
-        leftHandHold.transform.parent = oldLeftHandParent;
-        oldLeftHandParent = null;
+        DropHandItem(leftHandStatus);
+        AttachObjectToHand(leftHandStatus, obj);
     }
 
     public void AttachObjectToRightHand(GameObject obj)
     {
-        DropRightHandItem();
-        oldRightHandParent = obj.transform.parent;
-        AttachObjectToHand(rightHandTransform, obj);
+        DropHandItem(rightHandStatus);
+        AttachObjectToHand(rightHandStatus, obj);
     }
 
-    private void DropRightHandItem()
+    public void DropLeftHandItem()
     {
-        if (rightHandHold == null) return;
-        rightHandHold.transform.parent = oldRightHandParent;
-        oldLeftHandParent = null;
+        DropHandItem(leftHandStatus);
     }
 
-    private void AttachObjectToHand(Transform hand, GameObject obj)
+    public void DropRightHandItem()
     {
-        Rigidbody rigidbody = obj.GetComponent<Rigidbody>();
-        if (rigidbody != null)
+        DropHandItem(rightHandStatus);
+    }
+
+    private void AttachObjectToHand(HandStatus handStatus, GameObject obj)
+    {
+        handStatus.rigidbody = obj.GetComponent<Rigidbody>();
+        if (handStatus.rigidbody != null)
         {
-            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            handStatus.oldConstraints = handStatus.rigidbody.constraints;
+            handStatus.rigidbody.constraints = RigidbodyConstraints.FreezeAll;
         }
-        // Collider collider = obj.GetComponent<Collider>();
-        // if (collider != null) collider.isTrigger = true;
-        obj.transform.parent = hand;
-        obj.transform.position = hand.transform.position;
+        handStatus.holding = obj;
+        handStatus.oldParent = obj.transform.parent;
+        Debug.Log(handStatus.holding);
+        obj.transform.parent = handStatus.transform;
+        obj.transform.position = handStatus.transform.position;
+    }
+
+    private void DropHandItem(HandStatus handStatus)
+    {
+        if (handStatus.holding == null) return;
+        handStatus.holding.transform.parent = handStatus.oldParent;
+        handStatus.holding = null;
+        handStatus.oldParent = null;
+        if (handStatus.rigidbody) handStatus.rigidbody.constraints = handStatus.oldConstraints;
+        handStatus.rigidbody = null;
     }
 
     public void LookAt(GameObject other)
     {
         Quaternion _lookRotation = Quaternion.LookRotation((other.transform.position - transform.position).normalized);
-        Debug.Log(_lookRotation);
-        // transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
-        transform.rotation = _lookRotation;
+        // Debug.Log(_lookRotation);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * turnSpeed);
+        // transform.rotation = _lookRotation;
     }
 
     public void LookAtWithDelay(GameObject other)
@@ -123,4 +127,13 @@ public class AutisticChild : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         LookAt(other);
     }
+}
+
+class HandStatus
+{
+    public Transform transform { get; set; }
+    public GameObject holding { get; set; }
+    public Transform oldParent { get; set; }
+    public Rigidbody rigidbody { get; set; }
+    public RigidbodyConstraints oldConstraints { get; set; }
 }
