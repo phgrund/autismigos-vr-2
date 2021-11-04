@@ -9,14 +9,30 @@ public class Door : MonoBehaviour
     public UnityEvent OnDoorUnlock;
     private Rigidbody doorRigidbody;
 
+    // private Quaternion originalRotationValue;
+    private bool isLocked = false;
+
     void Awake()
     {
         doorRigidbody = GetComponent<Rigidbody>();
     }
 
+    void Start()
+    {
+        // originalRotationValue = transform.rotation;
+    }
+
+    void Update()
+    {
+        // Debug.Log(transform.rotation);
+        // if (isLocked) transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, Time.time * rotationResetSpeed
+    }
+
     public void LockDoor()
     {
-        doorRigidbody.freezeRotation = true;
+        if (!isLocked) return;
+        isLocked = true;
+        doorRigidbody.constraints = RigidbodyConstraints.FreezeAll;
         OnDoorLock.Invoke();
         Debug.Log("Door Locked");
     }
@@ -34,7 +50,10 @@ public class Door : MonoBehaviour
 
     public void UnlockDoor()
     {
-        doorRigidbody.freezeRotation = false;
+        if (isLocked) return;
+        isLocked = false;
+        doorRigidbody.constraints = RigidbodyConstraints.None;
+        // transform.rotation = new Quaternion(0f, 1f, 0f, 1f);
         OnDoorUnlock.Invoke();
         Debug.Log("Door Unlocked");
     }

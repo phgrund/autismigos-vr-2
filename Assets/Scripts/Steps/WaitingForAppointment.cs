@@ -31,17 +31,7 @@ public class WaitingForAppointment : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!changedToCartoon && cartoonClip.Equals(videoPlayer.clip))
-        {
-            changedToCartoon = true;
-            autistic.StopCrying();
-            autistic.LookAt(tv);
-        }
-        if (!turnedTvOff && cartoonClip == null)
-        {
-            turnedTvOff = true;
-            // Abrir a porta do consultório e chamar criança
-        }
+
     }
 
     public void MoveAutisticToSeat()
@@ -54,5 +44,22 @@ public class WaitingForAppointment : MonoBehaviour
         // Começa a chorar após 5 segundos
         await Task.Delay(TimeSpan.FromSeconds(1));
         autistic.StartCrying();
+    }
+
+    public async void OnChannelChange()
+    {
+        if (!changedToCartoon && videoPlayer.clip.Equals(cartoonClip))
+        {
+            changedToCartoon = true;
+            autistic.StopCrying();
+            autistic.LookAt(tv);
+            await Task.Delay(TimeSpan.FromSeconds(5));
+            // A doutora chama para o atendimento, mas a criança não quer sair
+        }
+        if (!turnedTvOff && cartoonClip == null && changedToCartoon)
+        {
+            turnedTvOff = true;
+            // Pegar brinquedo para chamar a criança para o consultório
+        }
     }
 }

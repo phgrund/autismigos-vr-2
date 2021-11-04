@@ -17,6 +17,9 @@ public class AutisticChild : MonoBehaviour
     private bool isNavigating = false;
     private Checkpoint currentCheckpoint;
 
+    public ParticleSystem leftEyeCryingParticle;
+    public ParticleSystem rightEyeCryingParticle;
+
     public Transform leftHand;
     public Transform rightHand;
 
@@ -41,6 +44,8 @@ public class AutisticChild : MonoBehaviour
 
     void Start()
     {
+        leftEyeCryingParticle.Stop();
+        rightEyeCryingParticle.Stop();
         leftHandStatus = new HandStatus();
         rightHandStatus = new HandStatus();
         leftHandStatus.transform = leftHand.Find("Attach") ?? leftHand.transform;
@@ -93,6 +98,8 @@ public class AutisticChild : MonoBehaviour
     public void StartCrying()
     {
         if (isCrying) return;
+        leftEyeCryingParticle.Play();
+        rightEyeCryingParticle.Play();
         playContinuousSound.Play(cryingSound);
         isCrying = true;
     }
@@ -100,6 +107,9 @@ public class AutisticChild : MonoBehaviour
     public void StopCrying()
     {
         if (!isCrying) return;
+        leftEyeCryingParticle.Stop();
+        rightEyeCryingParticle.Stop();
+        playContinuousSound.Stop();
         isCrying = false;
     }
 
