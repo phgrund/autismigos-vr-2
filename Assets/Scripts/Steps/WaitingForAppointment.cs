@@ -42,7 +42,7 @@ public class WaitingForAppointment : MonoBehaviour
     public async void StartPlayingWithToy()
     {
         // Começa a chorar após 5 segundos
-        await Task.Delay(TimeSpan.FromSeconds(1));
+        await Task.Delay(TimeSpan.FromSeconds(5));
         autistic.StartCrying();
     }
 
@@ -52,8 +52,11 @@ public class WaitingForAppointment : MonoBehaviour
         {
             changedToCartoon = true;
             autistic.StopCrying();
-            autistic.LookAt(tv);
+            autistic.DropLeftHandItem();
+            // autistic.LookAt(tv);
             await Task.Delay(TimeSpan.FromSeconds(5));
+            consultingRoomDoor.UnlockDoor();
+            consultingRoomDoor.OpenDoor();
             // A doutora chama para o atendimento, mas a criança não quer sair
         }
         if (!turnedTvOff && cartoonClip == null && changedToCartoon)

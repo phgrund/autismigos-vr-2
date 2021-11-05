@@ -28,7 +28,7 @@ public class AutisticChild : MonoBehaviour
 
     // Animation States
     private bool isWalking = false;
-    private bool isRunning = false; // TODO
+    // private bool isRunning = false;
     private bool isSitting = false;
 
     public AudioClip cryingSound;
@@ -62,7 +62,7 @@ public class AutisticChild : MonoBehaviour
                 currentCheckpoint.InvokeCheckpointReached();
                 currentCheckpoint = null;
                 isWalking = false;
-                isRunning = false;
+                // isRunning = false;
             }
         }
 
@@ -85,7 +85,7 @@ public class AutisticChild : MonoBehaviour
     {
         if (currentCheckpoint) agent.isStopped = true;
         isWalking = false;
-        isRunning = false;
+        // isRunning = false;
         isSitting = true;
     }
 
@@ -97,6 +97,7 @@ public class AutisticChild : MonoBehaviour
 
     public void StartCrying()
     {
+        Debug.Log("Started Crying");
         if (isCrying) return;
         leftEyeCryingParticle.Play();
         rightEyeCryingParticle.Play();

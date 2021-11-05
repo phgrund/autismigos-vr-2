@@ -9,7 +9,7 @@ public class Door : MonoBehaviour
     public UnityEvent OnDoorUnlock;
     private Rigidbody doorRigidbody;
 
-    // private Quaternion originalRotationValue;
+    private Quaternion originalRotationValue;
     private bool isLocked = false;
 
     void Awake()
@@ -19,13 +19,12 @@ public class Door : MonoBehaviour
 
     void Start()
     {
-        // originalRotationValue = transform.rotation;
+        originalRotationValue = transform.rotation;
     }
 
     void Update()
     {
-        // Debug.Log(transform.rotation);
-        // if (isLocked) transform.rotation = Quaternion.Slerp(transform.rotation, originalRotationValue, Time.time * rotationResetSpeed
+
     }
 
     public void LockDoor()
@@ -53,10 +52,21 @@ public class Door : MonoBehaviour
         if (isLocked) return;
         isLocked = false;
         doorRigidbody.constraints = RigidbodyConstraints.None;
-        // transform.rotation = new Quaternion(0f, 1f, 0f, 1f);
         OnDoorUnlock.Invoke();
         Debug.Log("Door Unlocked");
     }
+
+    public void OpenDoor()
+    {
+        transform.Rotate(0, 90, 0);
+    }
+
+    /*
+    public void CloseDoor()
+    {
+        transform.rotation = originalRotationValue;
+    }
+    */
 
     public IEnumerator UnlockDoorCoroutine(float seconds)
     {
