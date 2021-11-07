@@ -3,23 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class AutisticChild : MonoBehaviour
 {
+    [Header("Setup Fields")]
     public UnityEvent OnCheckpointReached;
     public float turnSpeed = 1f;
 
+    private GameObject playerCamera;
     private NavMeshAgent agent;
     private Animator animator;
     private AudioSource audioSource;
     private PlayContinuousSound playContinuousSound;
+    public XRSocketInteractor leftHandSocketInteractor;
+    // public XRSocketInteractor rightHandSocketInteractor;
 
     private bool isNavigating = false;
     private Checkpoint currentCheckpoint;
+    private bool waitForPlayer = false;
+
+    [Header("Tears")]
 
     public ParticleSystem leftEyeCryingParticle;
     public ParticleSystem rightEyeCryingParticle;
 
+    [Header("Hands")]
     public Transform leftHand;
     public Transform rightHand;
 
@@ -44,8 +53,10 @@ public class AutisticChild : MonoBehaviour
 
     void Start()
     {
+        playerCamera = GameObject.FindWithTag("MainCamera");
         leftEyeCryingParticle.Stop();
         rightEyeCryingParticle.Stop();
+        playContinuousSound.Stop();
         leftHandStatus = new HandStatus();
         rightHandStatus = new HandStatus();
         leftHandStatus.transform = leftHand.Find("Attach") ?? leftHand.transform;
@@ -56,15 +67,34 @@ public class AutisticChild : MonoBehaviour
     {
         if (isNavigating)
         {
-            isNavigating = agent.remainingDistance != agent.stoppingDistance && !agent.isStopped;
+            isNavigating = agent.remainingDistance != agent.stoppingDistance;
+            // Chegou ao destino
             if (!isNavigating)
             {
                 currentCheckpoint.InvokeCheckpointReached();
                 currentCheckpoint = null;
                 isWalking = false;
+                waitForPlayer = false;
                 // isRunning = false;
             }
+            // Ainda está navegando
+            else
+            {
+                // Se é para esperar o acompanhante
+                if (waitForPlayer)
+                {
+                    Vector3 vectorToTarget = playerCamera.transform.position - transform.position;
+                    vectorToTarget.y = 0;
+                    float distanceToPlayer = vectorToTarget.magnitude;
+                    // Debug.Log($"Distance to Player: {distanceToPlayer}");
+                    bool isNear = distanceToPlayer <= 1f;
+                    isWalking = isNear;
+                    agent.isStopped = !isNear;
+                }
+            }
+
         }
+
 
         animator.SetBool("IsWalking", isWalking);
         animator.SetBool("IsSitting", isSitting);
@@ -79,6 +109,12 @@ public class AutisticChild : MonoBehaviour
         isSitting = false;
         agent.SetDestination(checkpoint.transform.position);
         currentCheckpoint = checkpoint;
+    }
+
+    public void FollowCheckpointWithParent(Checkpoint checkpoint)
+    {
+        FollowCheckpoint(checkpoint);
+        waitForPlayer = true;
     }
 
     public void SitDown()

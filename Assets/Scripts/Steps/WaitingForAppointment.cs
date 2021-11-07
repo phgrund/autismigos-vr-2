@@ -10,6 +10,7 @@ public class WaitingForAppointment : MonoBehaviour
 {
     public Door consultingRoomDoor;
     public Checkpoint seatCheckpoint;
+    public Checkpoint consultingRoomCheckpoint;
     public AutisticChild autistic;
 
     public GameObject tv;
@@ -62,7 +63,8 @@ public class WaitingForAppointment : MonoBehaviour
         if (!turnedTvOff && cartoonClip == null && changedToCartoon)
         {
             turnedTvOff = true;
-            // Pegar brinquedo para chamar a criança para o consultório
+            autistic.GetUp();
+            autistic.FollowCheckpointWithParent(consultingRoomCheckpoint);
         }
     }
 }
