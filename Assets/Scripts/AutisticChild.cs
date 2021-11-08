@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -9,6 +11,7 @@ public class AutisticChild : MonoBehaviour
 {
     [Header("Setup Fields")]
     public UnityEvent OnCheckpointReached;
+    public UnityEvent OnItemPickUp;
     public float turnSpeed = 1f;
 
     private GameObject playerCamera;
@@ -18,6 +21,7 @@ public class AutisticChild : MonoBehaviour
     private PlayContinuousSound playContinuousSound;
     public XRSocketInteractor leftHandSocketInteractor;
     // public XRSocketInteractor rightHandSocketInteractor;
+    public Checkpoint checkpointPrefab;
 
     private bool isNavigating = false;
     private Checkpoint currentCheckpoint;
@@ -150,6 +154,38 @@ public class AutisticChild : MonoBehaviour
         isCrying = false;
     }
 
+    private Checkpoint FollowItem(GameObject item)
+    {
+        Checkpoint checkpoint = Instantiate(checkpointPrefab, item.transform);
+        checkpoint.targetTag = "Autistic";
+        checkpoint.eventEmitType = Checkpoint.EventEmitType.ManualEmit;
+        FollowCheckpoint(checkpoint);
+
+        return checkpoint;
+    }
+
+    public void PickItemUp(GameObject item)
+    {
+        Checkpoint checkpoint = FollowItem(item);
+        checkpoint.OnCheckpointReached.AddListener(async () => {
+            Destroy(checkpoint.gameObject);
+            animator.SetTrigger("Lift");
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            AttachObjectToRightHand(item);
+            OnItemPickUp.Invoke();
+        });
+    }
+
+    public void PutItemDown(GameObject item)
+    {
+        Checkpoint checkpoint = FollowItem(item);
+        checkpoint.OnCheckpointReached.AddListener(async () => {
+            animator.SetTrigger("Lift");
+            await Task.Delay(TimeSpan.FromSeconds(1));
+            DropRightHandItem();
+        });
+    }
+
     public void AttachObjectToLeftHand(GameObject obj)
     {
         DropHandItem(leftHandStatus);
@@ -182,7 +218,7 @@ public class AutisticChild : MonoBehaviour
         }
         handStatus.holding = obj;
         handStatus.oldParent = obj.transform.parent;
-        Debug.Log(handStatus.holding);
+        Debug.Log($"Autistic is holding {handStatus.holding}");
         obj.transform.parent = handStatus.transform;
         obj.transform.position = handStatus.transform.position;
     }

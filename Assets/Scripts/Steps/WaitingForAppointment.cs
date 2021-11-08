@@ -12,6 +12,8 @@ public class WaitingForAppointment : MonoBehaviour
     public Checkpoint seatCheckpoint;
     public Checkpoint consultingRoomCheckpoint;
     public AutisticChild autistic;
+    public GameObject childCryingCanvas;
+    public GameObject doctorArrivedCanvas;
 
     public GameObject tv;
     public VideoClip cartoonClip;
@@ -45,6 +47,7 @@ public class WaitingForAppointment : MonoBehaviour
         // Começa a chorar após 5 segundos
         await Task.Delay(TimeSpan.FromSeconds(5));
         autistic.StartCrying();
+        childCryingCanvas.SetActive(true);
     }
 
     public async void OnChannelChange()
@@ -53,17 +56,18 @@ public class WaitingForAppointment : MonoBehaviour
         {
             changedToCartoon = true;
             autistic.StopCrying();
-            autistic.DropLeftHandItem();
             // autistic.LookAt(tv);
             await Task.Delay(TimeSpan.FromSeconds(5));
             consultingRoomDoor.UnlockDoor();
             consultingRoomDoor.OpenDoor();
             // A doutora chama para o atendimento, mas a criança não quer sair
+            doctorArrivedCanvas.SetActive(true);
         }
         if (!turnedTvOff && cartoonClip == null && changedToCartoon)
         {
             turnedTvOff = true;
             autistic.GetUp();
+            autistic.DropLeftHandItem();
             autistic.FollowCheckpointWithParent(consultingRoomCheckpoint);
         }
     }
