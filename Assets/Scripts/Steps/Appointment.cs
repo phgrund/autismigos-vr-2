@@ -7,15 +7,14 @@ using UnityEngine;
 public class Appointment : MonoBehaviour
 {
     public AutisticChild autistic;
+    public Doctor doctor;
     public GameObject[] numbers;
-    public Checkpoint numberWaitingCheckpoint;
-    private int numberIndex = 0;
-    private int numbersAmount;
+    public Checkpoint numberFinishedNumberSortingCheckpoint;
+    private int numbersPlaced = 0;
 
     void Awake()
     {
-        numbersAmount = numbers.Length;
-        Debug.Log(numbersAmount);
+
     }
 
     // Start is called before the first frame update
@@ -30,9 +29,44 @@ public class Appointment : MonoBehaviour
 
     }
 
-    public async void ReturnToNumberWaiting()
+    private async void SortNumberInPlace(NumberCube numberCube)
     {
-        await Task.Delay(TimeSpan.FromSeconds(1));
-        autistic.FollowCheckpoint(numberWaitingCheckpoint);
+        await Task.Delay(TimeSpan.FromSeconds(1.5));
+        autistic.PutItemDown(numberCube.targetCheckpoint);
+    }
+
+    public void OnNumberPickUp()
+    {
+        if (autistic.GetCurrentHandItem().TryGetComponent(out NumberCube numberCube))
+        {
+            SortNumberInPlace(numberCube);
+        }
+    }
+
+    public async void OnNumberPutDown()
+    {
+        numbersPlaced++;
+        Debug.Log($"{numbersPlaced} out of {numbers.Length}");
+        if (numbersPlaced == numbers.Length)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(3f));
+            autistic.FollowCheckpoint(numberFinishedNumberSortingCheckpoint);
+        }
+    }
+
+    public async void PutAutisticInGurney()
+    {
+        await Task.Delay(TimeSpan.FromSeconds(3f));
+
+        autistic.TeleportTo(
+            new Vector3(-8.1f, 1f, -1.9f),
+            Quaternion.Euler(0f, 90f, 0f)
+        );
+        autistic.SitDown();
+
+        doctor.TeleportTo(
+            new Vector3(-7.09924746f, 0.0656685829f, -1.11507154f),
+            Quaternion.Euler(0f, 240f, 0f)
+        );
     }
 }

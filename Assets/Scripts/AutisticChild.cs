@@ -19,6 +19,7 @@ public class AutisticChild : MonoBehaviour
     private Animator animator;
     private AudioSource audioSource;
     private PlayContinuousSound playContinuousSound;
+    private PlayQuickSound playQuickSound;
     public XRSocketInteractor leftHandSocketInteractor;
     // public XRSocketInteractor rightHandSocketInteractor;
     public Checkpoint checkpointPrefab;
@@ -46,6 +47,7 @@ public class AutisticChild : MonoBehaviour
 
     public AudioClip cryingSound;
     private bool isCrying = false;
+    public AudioClip cheeringSound;
 
     void Awake()
     {
@@ -53,6 +55,7 @@ public class AutisticChild : MonoBehaviour
         animator = GetComponent<Animator>();
         audioSource = GetComponent<AudioSource>();
         playContinuousSound = GetComponent<PlayContinuousSound>();
+        playQuickSound = GetComponent<PlayQuickSound>();
     }
 
     void Start()
@@ -154,9 +157,9 @@ public class AutisticChild : MonoBehaviour
         isCrying = false;
     }
 
-    private Checkpoint FollowItem(GameObject item)
+    private Checkpoint FollowItem(Transform position)
     {
-        Checkpoint checkpoint = Instantiate(checkpointPrefab, item.transform);
+        Checkpoint checkpoint = Instantiate(checkpointPrefab, position);
         checkpoint.targetTag = "Autistic";
         checkpoint.eventEmitType = Checkpoint.EventEmitType.ManualEmit;
         FollowCheckpoint(checkpoint);
@@ -164,26 +167,38 @@ public class AutisticChild : MonoBehaviour
         return checkpoint;
     }
 
+    private Checkpoint FollowItem(Checkpoint checkpoint)
+    {
+        FollowCheckpoint(checkpoint);
+
+        return checkpoint;
+    }
+
     public void PickItemUp(GameObject item)
     {
-        Checkpoint checkpoint = FollowItem(item);
+        Checkpoint checkpoint = FollowItem(item.transform);
         checkpoint.OnCheckpointReached.AddListener(async () => {
             Destroy(checkpoint.gameObject);
             animator.SetTrigger("Lift");
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(1.5f));
             AttachObjectToRightHand(item);
             OnItemPickUp.Invoke();
         });
     }
 
-    public void PutItemDown(GameObject item)
+    public void PutItemDown(Checkpoint checkpoint)
     {
-        Checkpoint checkpoint = FollowItem(item);
+        FollowItem(checkpoint);
         checkpoint.OnCheckpointReached.AddListener(async () => {
             animator.SetTrigger("Lift");
-            await Task.Delay(TimeSpan.FromSeconds(1));
+            await Task.Delay(TimeSpan.FromSeconds(1.5f));
             DropRightHandItem();
         });
+    }
+
+    public GameObject GetCurrentHandItem()
+    {
+        return rightHandStatus.holding;
     }
 
     public void AttachObjectToLeftHand(GameObject obj)
@@ -231,6 +246,18 @@ public class AutisticChild : MonoBehaviour
         handStatus.oldParent = null;
         if (handStatus.rigidbody) handStatus.rigidbody.constraints = handStatus.oldConstraints;
         handStatus.rigidbody = null;
+    }
+
+    public void Cheer()
+    {
+        animator.SetTrigger("Cheer");
+        playQuickSound.Play(cheeringSound);
+    }
+
+    public void TeleportTo(Vector3 position, Quaternion rotation)
+    {
+        transform.rotation = rotation;
+        agent.Warp(position);
     }
 
     // TODO: Ver o porquê não está funcionando

@@ -7,6 +7,7 @@ TagManager:
   - elev01
   - Autistic
   - Doctor
+  - Number
   layers:
   - Default
   - TransparentFX

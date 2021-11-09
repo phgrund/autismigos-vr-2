@@ -51,6 +51,11 @@ public class Doctor : MonoBehaviour
         isWalking = true;
         agent.SetDestination(checkpoint.transform.position);
         currentCheckpoint = checkpoint;
+    }
 
+    public void TeleportTo(Vector3 position, Quaternion rotation)
+    {
+        transform.rotation = rotation;
+        agent.Warp(position);
     }
 }
