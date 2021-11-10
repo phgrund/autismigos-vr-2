@@ -19773,6 +19773,21 @@ MonoBehaviour:
   - {fileID: 32900000, guid: db11677dc5b72de44a038e10e7659dbb, type: 3}
   - {fileID: 32900000, guid: 38c49f9c35ec8fb4baab404d53d991ff, type: 3}
   - {fileID: 0}
+  OnVideoStop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 538315372}
+        m_TargetAssemblyTypeName: WaitingForAppointment, Assembly-CSharp
+        m_MethodName: OnVideoStop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!328 &1410570644
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -19829,9 +19844,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 0.1
-  MaxDistance: 1
+  MaxDistance: 10
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21664,7 +21679,7 @@ MonoBehaviour:
   m_Colliders: []
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 512
   m_CustomReticle: {fileID: 0}
   m_FirstHoverEntered:
     m_PersistentCalls:
@@ -24934,7 +24949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.548
+      value: 0.019
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24942,7 +24957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.238
+      value: -9.324
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.w

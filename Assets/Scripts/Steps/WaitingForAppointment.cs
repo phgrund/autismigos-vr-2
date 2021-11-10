@@ -63,12 +63,16 @@ public class WaitingForAppointment : MonoBehaviour
             // A doutora chama para o atendimento, mas a criança não quer sair
             doctorArrivedCanvas.SetActive(true);
         }
-        if (!turnedTvOff && videoPlayer.clip == null && changedToCartoon)
+    }
+
+    public void OnVideoStop()
+    {
+        if (!turnedTvOff && changedToCartoon)
         {
             turnedTvOff = true;
             autistic.GetUp();
             autistic.DropLeftHandItem();
-            autistic.FollowCheckpoint(consultingRoomCheckpoint);
+            autistic.FollowCheckpointWithParent(consultingRoomCheckpoint);
         }
     }
 }

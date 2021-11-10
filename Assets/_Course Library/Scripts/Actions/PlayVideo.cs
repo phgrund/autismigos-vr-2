@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Video;
 
 /// <summary>
@@ -16,6 +17,8 @@ public class PlayVideo : MonoBehaviour
 
     [Tooltip("List of video clips to pull from")]
     public List<VideoClip> videoClips = new List<VideoClip>();
+
+    public UnityEvent OnVideoStop;
 
     private VideoPlayer videoPlayer = null;
     private MeshRenderer meshRenderer = null;
@@ -101,6 +104,7 @@ public class PlayVideo : MonoBehaviour
     {
         meshRenderer.material = offMaterial;
         videoPlayer.Stop();
+        OnVideoStop.Invoke();
     }
 
     public void TogglePlayStop()
