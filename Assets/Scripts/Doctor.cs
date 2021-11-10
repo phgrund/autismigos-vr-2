@@ -58,4 +58,9 @@ public class Doctor : MonoBehaviour
         transform.rotation = rotation;
         agent.Warp(position);
     }
+
+    public void LookAt(Vector3 rotation)
+    {
+        transform.rotation = Quaternion.Euler(rotation);
+    }
 }

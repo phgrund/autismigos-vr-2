@@ -3036,6 +3036,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: chair
       objectReference: {fileID: 0}
+    - target: {fileID: 5999845506303850339, guid: 3f036e691e664f447a90fa723afffeb0, type: 3}
+      propertyPath: m_Layer
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 6343437858535550425, guid: 3f036e691e664f447a90fa723afffeb0, type: 3}
       propertyPath: m_RootOrder
       value: 16
@@ -3143,6 +3147,7 @@ MonoBehaviour:
   - {fileID: 1110069414}
   - {fileID: 151035007}
   numberFinishedNumberSortingCheckpoint: {fileID: 1168063591}
+  appointmentStartedCanvas: {fileID: 1874140818}
 --- !u!1 &421311110
 GameObject:
   m_ObjectHideFlags: 0
@@ -13450,7 +13455,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 28672
+    m_Bits: 29696
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -13458,9 +13463,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.08
+  m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: caef17ab703f1684c8fb29556467841d, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: f6b3df389e434cc44917ef4b1fa8140b, type: 2}
 --- !u!4 &512299076
 Transform:
   m_ObjectHideFlags: 0
@@ -13528,7 +13533,7 @@ MonoBehaviour:
   consultingRoomCheckpoint: {fileID: 78176987}
   autistic: {fileID: 1325002719}
   childCryingCanvas: {fileID: 732120709}
-  doctorArrivedCanvas: {fileID: 0}
+  doctorArrivedCanvas: {fileID: 776247942}
   tv: {fileID: 1410570642}
   cartoonClip: {fileID: 32900000, guid: 38c49f9c35ec8fb4baab404d53d991ff, type: 3}
 --- !u!4 &548505799 stripped
@@ -13680,7 +13685,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "O barulho do jornal na televis\xE3o\ndeixou a crian\xE7a irrita. Pegue
+  m_Text: "O barulho do jornal na televis\xE3o\ndeixou a crian\xE7a irritada. Pegue
     o\ncontrole remoto na mesa e troque\no canal para um desenho animado"
 --- !u!222 &558063345
 CanvasRenderer:
@@ -15306,8 +15311,12 @@ PrefabInstance:
       value: Autistic
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
+      propertyPath: eventEmitType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -15316,18 +15325,18 @@ PrefabInstance:
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 538315372}
+      objectReference: {fileID: 417392740}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveAutisticToSeat
+      value: DoctorReachedGurney
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WaitingForAppointment, Assembly-CSharp
+      value: Appointment, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -15343,7 +15352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786129, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.353
+      value: -8.143
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786129, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: m_LocalPosition.y
@@ -15351,7 +15360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786129, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.4
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786129, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15436,7 +15445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &732120710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18075,7 +18084,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 928215863046454292, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.68195033
+      value: 0.68954015
       objectReference: {fileID: 0}
     - target: {fileID: 928215863046454292, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_LocalScale.z
@@ -18091,7 +18100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 928215863046454292, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.7972
+      value: -4.7655
       objectReference: {fileID: 0}
     - target: {fileID: 928215863046454292, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_LocalRotation.w
@@ -18973,7 +18982,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: eventEmitType
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.size
@@ -18981,7 +18990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -18998,7 +19007,7 @@ PrefabInstance:
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 538315372}
+      objectReference: {fileID: 1050297790}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -19029,7 +19038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: StartPlayingWithToy
+      value: Log
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -19045,7 +19054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: WaitingForAppointment, Assembly-CSharp
+      value: DebugTest, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -19062,6 +19071,10 @@ PrefabInstance:
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
+      propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: "Chegou ao consult\xF3rio"
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
@@ -19810,15 +19823,15 @@ AudioSource:
   m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
-  Mute: 1
+  Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 5
+  MinDistance: 0.1
+  MaxDistance: 1
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -21180,7 +21193,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: eventEmitType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
       propertyPath: OnCheckpointReached.m_PersistentCalls.m_Calls.Array.size
@@ -22884,7 +22897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1874140819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23234,7 +23247,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Chegou a hora da consulta.\nPara ajudar a crian\xE7a a concentrar\nna
-    consulta, d\xEA na m\xE3o dela\num brinquedinho."
+    consulta, brinque pr\xF3ximo \xE0 ela\ncom algum brinquedinho ."
 --- !u!222 &1957564457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23421,7 +23434,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5962317150407650690, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6622147223519980149, guid: a53252e410a5546d6a33587a0cbd2204, type: 3}
       propertyPath: m_Enabled
@@ -23462,7 +23475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367695987642534, guid: b5bf67069f5950943afac56320c54b69, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.704
+      value: -4.63
       objectReference: {fileID: 0}
     - target: {fileID: 4367695987642534, guid: b5bf67069f5950943afac56320c54b69, type: 3}
       propertyPath: m_LocalPosition.y
@@ -23470,7 +23483,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4367695987642534, guid: b5bf67069f5950943afac56320c54b69, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.062
+      value: 1.17
       objectReference: {fileID: 0}
     - target: {fileID: 4367695987642534, guid: b5bf67069f5950943afac56320c54b69, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23703,7 +23716,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 28672
+    m_Bits: 29696
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -23711,7 +23724,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 6548a22cdc0ee9440ae2be48b6c0caea, type: 2}
 --- !u!4 &2044189612
@@ -24921,7 +24934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.447
+      value: 0.548
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -24929,11 +24942,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.066
+      value: -9.238
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710784
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.x
@@ -24941,7 +24954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70710576
+      value: -0.000000014901161
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.z
@@ -24953,7 +24966,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -24990,7 +25003,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501632272992791464, guid: 46e0569259d9546089b904235580c58b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.73060024
+      value: 0.74214375
       objectReference: {fileID: 0}
     - target: {fileID: 5501632272992791464, guid: 46e0569259d9546089b904235580c58b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25002,7 +25015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5501632272992791464, guid: 46e0569259d9546089b904235580c58b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.0946
+      value: 0.0607
       objectReference: {fileID: 0}
     - target: {fileID: 5501632272992791464, guid: 46e0569259d9546089b904235580c58b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25134,7 +25147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.008
+      value: -0.04
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -25142,7 +25155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.787
+      value: -8.79
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalRotation.w

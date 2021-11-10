@@ -10,6 +10,7 @@ public class Appointment : MonoBehaviour
     public Doctor doctor;
     public GameObject[] numbers;
     public Checkpoint numberFinishedNumberSortingCheckpoint;
+    public GameObject appointmentStartedCanvas;
     private int numbersPlaced = 0;
 
     void Awake()
@@ -68,5 +69,12 @@ public class Appointment : MonoBehaviour
             new Vector3(-7.09924746f, 0.0656685829f, -1.11507154f),
             Quaternion.Euler(0f, 240f, 0f)
         );
+
+        appointmentStartedCanvas.SetActive(true);
+    }
+
+    public void DoctorReachedGurney()
+    {
+        doctor.LookAt(new Vector3(0f, 90f, 0f));
     }
 }

@@ -17,7 +17,6 @@ public class AutisticChild : MonoBehaviour
     private GameObject playerCamera;
     private NavMeshAgent agent;
     private Animator animator;
-    private AudioSource audioSource;
     private PlayContinuousSound playContinuousSound;
     private PlayQuickSound playQuickSound;
     public XRSocketInteractor leftHandSocketInteractor;
@@ -25,7 +24,7 @@ public class AutisticChild : MonoBehaviour
     public Checkpoint checkpointPrefab;
 
     private bool isNavigating = false;
-    private Checkpoint currentCheckpoint;
+    public Checkpoint currentCheckpoint;
     private bool waitForPlayer = false;
 
     [Header("Tears")]
@@ -53,7 +52,6 @@ public class AutisticChild : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
         playContinuousSound = GetComponent<PlayContinuousSound>();
         playQuickSound = GetComponent<PlayQuickSound>();
     }
@@ -72,8 +70,11 @@ public class AutisticChild : MonoBehaviour
 
     void Update()
     {
+        if (agent.pathPending) return;
+
         if (isNavigating)
         {
+            Debug.Log($"Remaining: {agent.remainingDistance}, Stopping: {agent.stoppingDistance}");
             isNavigating = agent.remainingDistance != agent.stoppingDistance;
             // Chegou ao destino
             if (!isNavigating)
@@ -82,6 +83,7 @@ public class AutisticChild : MonoBehaviour
                 currentCheckpoint = null;
                 isWalking = false;
                 waitForPlayer = false;
+                agent.ResetPath();
                 // isRunning = false;
             }
             // Ainda está navegando
@@ -93,6 +95,7 @@ public class AutisticChild : MonoBehaviour
                     Vector3 vectorToTarget = playerCamera.transform.position - transform.position;
                     vectorToTarget.y = 0;
                     float distanceToPlayer = vectorToTarget.magnitude;
+                    Debug.Log($"Distance to player: {distanceToPlayer}");
                     // Debug.Log($"Distance to Player: {distanceToPlayer}");
                     bool isNear = distanceToPlayer <= 1f;
                     isWalking = isNear;
@@ -120,8 +123,8 @@ public class AutisticChild : MonoBehaviour
 
     public void FollowCheckpointWithParent(Checkpoint checkpoint)
     {
-        FollowCheckpoint(checkpoint);
         waitForPlayer = true;
+        FollowCheckpoint(checkpoint);
     }
 
     public void SitDown()
