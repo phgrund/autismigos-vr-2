@@ -11,6 +11,7 @@ public class Appointment : MonoBehaviour
     public GameObject[] numbers;
     public Checkpoint numberFinishedNumberSortingCheckpoint;
     public GameObject appointmentStartedCanvas;
+    public FadeController fade;
     private int numbersPlaced = 0;
 
     void Awake()
@@ -58,6 +59,8 @@ public class Appointment : MonoBehaviour
     public async void PutAutisticInGurney()
     {
         await Task.Delay(TimeSpan.FromSeconds(3f));
+        fade.FadeOut();
+        await Task.Delay(TimeSpan.FromSeconds(1f));
 
         autistic.TeleportTo(
             new Vector3(-8.1f, 1f, -1.9f),
@@ -69,6 +72,8 @@ public class Appointment : MonoBehaviour
             new Vector3(-7.09924746f, 0.0656685829f, -1.11507154f),
             Quaternion.Euler(0f, 240f, 0f)
         );
+
+        fade.FadeOut();
 
         appointmentStartedCanvas.SetActive(true);
     }
