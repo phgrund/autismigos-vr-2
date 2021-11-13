@@ -9,6 +9,7 @@ public class Appointment : MonoBehaviour
     public AutisticChild autistic;
     public Doctor doctor;
     public GameObject[] numbers;
+    public Checkpoint numberWaitingCheckpoint;
     public Checkpoint numberFinishedNumberSortingCheckpoint;
     public GameObject appointmentStartedCanvas;
     public FadeController fade;
@@ -53,6 +54,11 @@ public class Appointment : MonoBehaviour
         {
             await Task.Delay(TimeSpan.FromSeconds(3f));
             autistic.FollowCheckpoint(numberFinishedNumberSortingCheckpoint);
+        }
+        else
+        {
+            await Task.Delay(TimeSpan.FromSeconds(3f));
+            autistic.FollowCheckpoint(numberWaitingCheckpoint);
         }
     }
 
