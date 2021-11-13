@@ -260,8 +260,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Crian\xE7as autistas gostam de\nmanter as coisas em ordem.\nBote o cubo
-    num\xE9rico na m\xE3o da\ncrian\xE7a para come\xE7ar a ordenar."
+  m_Text: "Crian\xE7as autistas gostam de manter as coisas em ordem.\nBote o cubo
+    num\xE9rico na m\xE3o da crian\xE7a para come\xE7ar a ordenar."
 --- !u!222 &31508856
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13453,8 +13453,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Seja bem vindo ao Autismigos.\nVoc\xEA \xE9 o(a) cuidador(a) de uma\ncrian\xE7a
-    portadora do espectro\nautista."
+  m_Text: "Seja bem vindo ao Autismigos. Voc\xEA \xE9 o(a) cuidador(a) de uma crian\xE7a
+    portadora do espectro autista."
 --- !u!222 &498131788
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13694,7 +13694,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 26.68}
-  m_SizeDelta: {x: 355.62, y: 104.04}
+  m_SizeDelta: {x: 363.75, y: 104.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558063344
 MonoBehaviour:
@@ -13729,8 +13729,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "O barulho do jornal na televis\xE3o\ndeixou a crian\xE7a irritada. Pegue
-    o\ncontrole remoto na mesa e troque\no canal para um desenho animado."
+  m_Text: "O barulho do jornal na televis\xE3o deixou a crian\xE7a irritada. Pegue
+    o controle remoto na mesa e troque o canal para um desenho animado."
 --- !u!222 &558063345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21585,8 +21585,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Hora de entrar no consult\xF3rio!\nDesligue a televis\xE3o e acompanhe\na
-    crian\xE7a at\xE9 o consult\xF3rio."
+  m_Text: "Hora de entrar no consult\xF3rio!\nDesligue a televis\xE3o e acompanhe
+    a crian\xE7a at\xE9 \xE0 porta."
 --- !u!222 &1492406655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23003,8 +23003,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Acompanhe a crian\xE7a at\xE9 a porta\nde entrada, toque o interfone e\naguarde
-    a porta ser liberada."
+  m_Text: "Acompanhe a crian\xE7a at\xE9 a porta de entrada, toque o interfone e
+    aguarde a porta ser liberada."
 --- !u!222 &1648521204
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24902,8 +24902,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Chegou a hora da consulta.\nPara ajudar a crian\xE7a a concentrar\nna
-    consulta, brinque pr\xF3ximo \xE0 ela\ncom algum brinquedinho."
+  m_Text: "Chegou a hora da consulta! Para ajudar a crian\xE7a a concentrar na consulta,
+    brinque pr\xF3ximo \xE0 ela com um boneco de pel\xFAcia."
 --- !u!222 &1957564457
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26614,7 +26614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.025
+      value: 0.637
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26622,23 +26622,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.366
+      value: -8.754
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.79335415
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.6087605
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -26646,7 +26646,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -75
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
