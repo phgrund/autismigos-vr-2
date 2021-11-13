@@ -18332,19 +18332,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnGameStart:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 538315372}
-        m_TargetAssemblyTypeName: WaitingForAppointment, Assembly-CSharp
-        m_MethodName: PickToyUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &1050297789
 Transform:
   m_ObjectHideFlags: 0
@@ -19014,11 +19002,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4235038215153912, guid: c0838f71047cde340b8320435418a398, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.953
+      value: 0.951
       objectReference: {fileID: 0}
     - target: {fileID: 4235038215153912, guid: c0838f71047cde340b8320435418a398, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.24476257
+      value: -0.254
       objectReference: {fileID: 0}
     - target: {fileID: 4235038215153912, guid: c0838f71047cde340b8320435418a398, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26626,7 +26614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31
+      value: -0.025
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26634,7 +26622,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.34
+      value: -9.366
       objectReference: {fileID: 0}
     - target: {fileID: 3089045389216779768, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26839,7 +26827,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.11
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26847,7 +26835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.12
+      value: -8.82
       objectReference: {fileID: 0}
     - target: {fileID: 3709490077180837740, guid: f8795624ebef55f4688381f5e0236fa1, type: 3}
       propertyPath: m_LocalRotation.w
