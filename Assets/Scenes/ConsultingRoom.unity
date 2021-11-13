@@ -13704,7 +13704,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "O barulho do jornal na televis\xE3o\ndeixou a crian\xE7a irritada. Pegue
-    o\ncontrole remoto na mesa e troque\no canal para um desenho animado"
+    o\ncontrole remoto na mesa e troque\no canal para um desenho animado."
 --- !u!222 &558063345
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -21428,8 +21428,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Chegou a hora da consulta!\nDesligue a televis\xE3o e acompanhe\na crian\xE7a
-    at\xE9 o consult\xF3rio."
+  m_Text: "Hora de entrar no consult\xF3rio!\nDesligue a televis\xE3o e acompanhe\na
+    crian\xE7a at\xE9 o consult\xF3rio."
 --- !u!222 &1492406655
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -22846,7 +22846,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Acompanhe a crian\xE7a at\xE9 a porta\nde entrada e toque o interfone"
+  m_Text: "Acompanhe a crian\xE7a at\xE9 a porta\nde entrada, toque o interfone e\naguarde
+    a porta ser liberada."
 --- !u!222 &1648521204
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24745,7 +24746,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Chegou a hora da consulta.\nPara ajudar a crian\xE7a a concentrar\nna
-    consulta, brinque pr\xF3ximo \xE0 ela\ncom algum brinquedinho ."
+    consulta, brinque pr\xF3ximo \xE0 ela\ncom algum brinquedinho."
 --- !u!222 &1957564457
 CanvasRenderer:
   m_ObjectHideFlags: 0
