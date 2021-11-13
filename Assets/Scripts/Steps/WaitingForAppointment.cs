@@ -14,6 +14,7 @@ public class WaitingForAppointment : MonoBehaviour
     public AutisticChild autistic;
     public GameObject childCryingCanvas;
     public GameObject doctorArrivedCanvas;
+    public GameObject toy;
 
     public GameObject tv;
     public VideoClip cartoonClip;
@@ -35,6 +36,20 @@ public class WaitingForAppointment : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void PickToyUp()
+    {
+        autistic.PickItemUp(toy);
+    }
+
+    public async void OnToyPickUp()
+    {
+        if (autistic.GetCurrentHandItem().TryGetComponent(out Toy _toy))
+        {
+            await Task.Delay(TimeSpan.FromSeconds(1.5f));
+            MoveAutisticToSeat();
+        }
     }
 
     public void MoveAutisticToSeat()
