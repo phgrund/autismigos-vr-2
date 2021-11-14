@@ -21,6 +21,7 @@ public class WaitingForAppointment : MonoBehaviour
     private VideoPlayer videoPlayer;
     private bool changedToCartoon = false;
     private bool turnedTvOff = false;
+    private bool hasPickedToyUp = false;
 
     void Awake()
     {
@@ -45,9 +46,11 @@ public class WaitingForAppointment : MonoBehaviour
 
     public async void OnToyPickUp()
     {
+        if (hasPickedToyUp) return;
         if (autistic.GetCurrentHandItem().TryGetComponent(out Toy _toy))
         {
-            await Task.Delay(TimeSpan.FromSeconds(1.5f));
+            hasPickedToyUp = true;
+            await Task.Delay(TimeSpan.FromSeconds(1.75f));
             MoveAutisticToSeat();
         }
     }
@@ -86,7 +89,7 @@ public class WaitingForAppointment : MonoBehaviour
         {
             turnedTvOff = true;
             autistic.GetUp();
-            autistic.DropLeftHandItem();
+            autistic.DropRightHandItem();
             autistic.FollowCheckpointWithParent(consultingRoomCheckpoint);
         }
     }

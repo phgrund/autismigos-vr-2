@@ -183,7 +183,7 @@ public class AutisticChild : MonoBehaviour
         checkpoint.OnCheckpointReached.AddListener(async () => {
             Destroy(checkpoint.gameObject);
             animator.SetTrigger("Lift");
-            await Task.Delay(TimeSpan.FromSeconds(1.5f));
+            await Task.Delay(TimeSpan.FromSeconds(1.75f));
             AttachObjectToRightHand(item);
             OnItemPickUp.Invoke();
         });
