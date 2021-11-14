@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class InfoCanvas : MonoBehaviour
 {
-    public AudioClip audio;
+    public AudioClip canvasAudio;
     private PlayQuickSound playQuickSound;
 
     void Awake()
@@ -12,9 +14,10 @@ public class InfoCanvas : MonoBehaviour
         playQuickSound = GetComponent<PlayQuickSound>();
     }
 
-    void OnEnable()
+    async void OnEnable()
     {
-        if (audio != null) playQuickSound.Play(audio);
+        await Task.Delay(TimeSpan.FromSeconds(1));
+        if (canvasAudio != null) playQuickSound.Play(canvasAudio);
         Debug.Log("Info Canvas enabled");
     }
 }
