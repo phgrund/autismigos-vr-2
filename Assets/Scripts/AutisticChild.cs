@@ -46,7 +46,9 @@ public class AutisticChild : MonoBehaviour
 
     public AudioClip cryingSound;
     private bool isCrying = false;
+
     public AudioClip cheeringSound;
+    public AudioClip walkingSound;
 
     void Awake()
     {
@@ -74,7 +76,7 @@ public class AutisticChild : MonoBehaviour
 
         if (isNavigating)
         {
-            Debug.Log($"Remaining: {agent.remainingDistance}, Stopping: {agent.stoppingDistance}");
+            // Debug.Log($"Remaining: {agent.remainingDistance}, Stopping: {agent.stoppingDistance}");
             isNavigating = agent.remainingDistance != agent.stoppingDistance;
             // Chegou ao destino
             if (!isNavigating)
@@ -84,6 +86,7 @@ public class AutisticChild : MonoBehaviour
                 isWalking = false;
                 waitForPlayer = false;
                 agent.ResetPath();
+                playContinuousSound.Stop(); // Stops walking sound
                 // isRunning = false;
             }
             // Ainda está navegando
@@ -95,17 +98,16 @@ public class AutisticChild : MonoBehaviour
                     Vector3 vectorToTarget = playerCamera.transform.position - transform.position;
                     vectorToTarget.y = 0;
                     float distanceToPlayer = vectorToTarget.magnitude;
-                    Debug.Log($"Distance to player: {distanceToPlayer}");
+                    // Debug.Log($"Distance to player: {distanceToPlayer}");
                     // Debug.Log($"Distance to Player: {distanceToPlayer}");
                     bool isNear = distanceToPlayer <= 1f;
                     isWalking = isNear;
                     agent.isStopped = !isNear;
                 }
             }
-
         }
 
-
+        if (isWalking) playContinuousSound.Play(walkingSound);
         animator.SetBool("IsWalking", isWalking);
         animator.SetBool("IsSitting", isSitting);
         // Debug.Log($"Is Sitting: {IsSitting}");
@@ -147,7 +149,6 @@ public class AutisticChild : MonoBehaviour
         if (isCrying) return;
         leftEyeCryingParticle.Play();
         rightEyeCryingParticle.Play();
-        playContinuousSound.Play(cryingSound);
         isCrying = true;
     }
 

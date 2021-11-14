@@ -25,7 +25,7 @@ public class PlayContinuousSound : MonoBehaviour
 
     public void Play(AudioClip sound)
     {
-        if (!sound) return;
+        if (!sound || isPlaying) return;
 
         float randomVariance = Random.Range(-randomPitchVariance, randomPitchVariance);
         randomVariance += defaultPitch;
