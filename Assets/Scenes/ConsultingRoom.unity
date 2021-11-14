@@ -15191,6 +15191,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1410570643}
+        m_TargetAssemblyTypeName: PlayVideo, Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &724480731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15793,7 +15805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: 4239f92612cd68b489d0f13a760678b9, type: 3}
+  canvasAudio: {fileID: 0}
 --- !u!1001 &740762837
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16244,7 +16256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: b7be405171a00a34ebe6af0d7c8eeb45, type: 3}
+  canvasAudio: {fileID: 0}
 --- !u!114 &785273526 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8384970469013786128, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
@@ -17689,7 +17701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: c12ae319bdd82c84cac0c7dfb1209ae2, type: 3}
+  canvasAudio: {fileID: 0}
 --- !u!1001 &961052203
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18175,6 +18187,7 @@ MonoBehaviour:
   entranceDoor: {fileID: 724480728}
   entranceDoorCheckpoint: {fileID: 1044044351}
   autistic: {fileID: 1325002719}
+  welcomeCanvas: {fileID: 1703738770}
 --- !u!4 &1026471587 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3089367450158372178, guid: 79272e209a17d3946b78605a9bdc54e6, type: 3}
@@ -18348,7 +18361,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnGameStart:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1025584852}
+        m_TargetAssemblyTypeName: Welcome, Assembly-CSharp
+        m_MethodName: ShowWelcomeMessage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &1050297789
 Transform:
   m_ObjectHideFlags: 0
@@ -20723,7 +20748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: 8b2bb4145d657544ea2b3f71c903c74f, type: 3}
+  canvasAudio: {fileID: 0}
 --- !u!1 &1410570642 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7540499388076540230, guid: a3051c696c83442f8b9a1c115ffa2359, type: 3}
@@ -20741,7 +20766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d4642753971e264fbb20044fa231cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playAtStart: 1
+  playAtStart: 0
   videoMaterial: {fileID: 0}
   videoClips:
   - {fileID: 32900000, guid: db11677dc5b72de44a038e10e7659dbb, type: 3}
@@ -23366,7 +23391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1703738761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23627,7 +23652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: 0192dd05128cd9e41987eebd18454b86, type: 3}
+  canvasAudio: {fileID: 8300000, guid: 0192dd05128cd9e41987eebd18454b86, type: 3}
 --- !u!1 &1705396085
 GameObject:
   m_ObjectHideFlags: 0
@@ -24707,7 +24732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc36445b29dc01a46af0325b422643d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 8300000, guid: 21593e12a75895846920fd49ebe19e80, type: 3}
+  canvasAudio: {fileID: 0}
 --- !u!4 &1882001008 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8384970469013786129, guid: 974984f50eaab9d48a8bd4a0fec60287, type: 3}
