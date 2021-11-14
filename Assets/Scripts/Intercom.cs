@@ -8,9 +8,16 @@ public class Intercom : MonoBehaviour
     public UnityEvent OnIntercomPress;
     private bool hasTouched = false;
 
-    public void touchIntercom ()
+    void OnTriggerEnter(Collider other)
     {
-        Debug.Log("touched");
+        if (other.gameObject.CompareTag("VR Hand"))
+        {
+            TouchIntercom();
+        }
+    }
+
+    public void TouchIntercom ()
+    {
         if (hasTouched) return;
         hasTouched = true;
         OnIntercomPress.Invoke();
